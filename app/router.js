@@ -21,6 +21,26 @@ const adminAuth = (req, res, next) => {
 router.get('/', mainController.index);
 router.post('/contact', mainController.post);
 
+// ─── SEO Routes ───
+router.get('/sitemap.xml', (req, res) => {
+    const base = process.env.BASE_URL || 'https://revenue-in.com';
+    res.header('Content-Type', 'application/xml');
+    res.send(`<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>${base}/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>${base}/#about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/#services</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>${base}/#testimonials</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>${base}/#contact</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+</urlset>`);
+});
+
+router.get('/robots.txt', (req, res) => {
+    const base = process.env.BASE_URL || 'https://revenue-in.com';
+    res.header('Content-Type', 'text/plain');
+    res.send(`User-agent: *\nAllow: /\nDisallow: /admin\n\nSitemap: ${base}/sitemap.xml`);
+});
+
 // ─── Auth Routes ───
 
 // Show the login page
