@@ -121,6 +121,16 @@
     font-size: 1rem;
   }
 
+  /* Testimonials slider: swipe only on mobile, hide arrows */
+  .testimonials-slider {
+    padding: 0 0 3rem;
+    /* no side padding needed without arrows */
+  }
+
+  .slider-btn {
+    display: none;
+  }
+
   .testimonial-card {
     padding: 1.75rem 1.25rem;
   }

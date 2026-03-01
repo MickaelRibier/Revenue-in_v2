@@ -166,6 +166,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (slides.length > 1) resetAutoplay();
 
+    // Touch swipe support for mobile
+    let touchStartX = 0;
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    track.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { // min 40px swipe threshold
+        goTo(diff > 0 ? current + 1 : current - 1);
+        resetAutoplay();
+      }
+    }, { passive: true });
+
     // "Read more / Show less" toggle for long testimonials
     track.querySelectorAll('.testimonial-text').forEach(function (textEl) {
       // Only show button if text is actually truncated
