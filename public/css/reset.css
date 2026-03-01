@@ -21,6 +21,8 @@ dd {
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  overflow-x: hidden;
+  /* prevent horizontal overscroll on iOS/mobile */
 }
 
 body {

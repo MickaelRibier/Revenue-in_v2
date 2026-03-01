@@ -39,8 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
-        // Stop observing once animated
-        observer.unobserve(entry.target);
+      } else {
+        // Remove 'active' when out of view so it re-animates on scroll-up too
+        entry.target.classList.remove('active');
       }
     });
   }, observerOptions);
