@@ -1,0 +1,130 @@
+/* ========================================================
+   MOBILE BURGER MENU
+   Default: hidden (shown only on mobile via medias.css)
+======================================================== */
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+/* Hide on desktop */
+label.navMobile {
+  display: none;
+  position: relative;
+  z-index: 1100;
+}
+
+/* The circular menu button */
+label .menu {
+  position: fixed;
+  right: -60px;
+  top: -60px;
+  z-index: 1100;
+  width: 130px;
+  height: 130px;
+  background: #000000e8;
+  border-radius: 50%;
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+
+/* Hamburger bars */
+label .hamburger {
+  position: fixed;
+  top: 28px;
+  right: 24px;
+  width: 28px;
+  height: 2px;
+  background: var(--importantColor);
+  display: block;
+  transition: 0.5s ease-in-out;
+  z-index: 1101;
+}
+
+label .hamburger:after,
+label .hamburger:before {
+  transition: 0.5s ease-in-out;
+  content: '';
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--importantColor);
+}
+
+label .hamburger:before {
+  top: -9px;
+}
+
+label .hamburger:after {
+  bottom: -9px;
+}
+
+/* Hide checkbox */
+label input {
+  display: none;
+}
+
+/* When checked → expand dark overlay */
+label input:checked+.menu {
+  box-shadow: 0 0 0 100vw #000000f2, 0 0 0 100vh #000000f2;
+  background: #000000f2;
+  border-radius: 0;
+}
+
+/* Cross animation */
+label input:checked+.menu .hamburger {
+  transform: rotate(45deg);
+}
+
+label input:checked+.menu .hamburger:after {
+  transform: rotate(90deg);
+  bottom: 0;
+}
+
+label input:checked+.menu .hamburger:before {
+  transform: rotate(90deg);
+  top: 0;
+}
+
+/* The nav links list — hidden by default */
+label ul {
+  z-index: 1200;
+  position: fixed;
+  top: 50vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  display: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+label input:checked+.menu+ul {
+  display: block;
+  animation: h2Opacity 0.4s ease-in-out forwards;
+}
+
+/* Nav link items */
+label ul li {
+  margin-bottom: 1.4em;
+}
+
+label ul a {
+  display: block;
+  color: var(--importantColor);
+  text-decoration: none;
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: -2px 2px 0px black;
+  transition: opacity 0.2s;
+}
+
+label ul a:hover {
+  opacity: 0.75;
+}

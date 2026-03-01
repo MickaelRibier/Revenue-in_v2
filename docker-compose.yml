@@ -1,0 +1,60 @@
+services:
+
+  # ──────────────────────────────────────────
+  # Node.js application
+  # ──────────────────────────────────────────
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: revenuein_app
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-revenuein}:${POSTGRES_PASSWORD:-changeme}@db:5432/${POSTGRES_DB:-revenuein}
+      SMTP_HOST: ${SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT}
+      SMTP_SECURE: ${SMTP_SECURE}
+      SMTP_IGNORE_TLS: ${SMTP_IGNORE_TLS}
+      EMAIL_USER: ${EMAIL_USER}
+      EMAIL_PWD: ${EMAIL_PWD}
+      EMAIL_FROM: ${EMAIL_FROM}
+      EMAIL_RECIPIENT: ${EMAIL_RECIPIENT}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - revenuein_net
+
+  # ──────────────────────────────────────────
+  # PostgreSQL database
+  # ──────────────────────────────────────────
+  db:
+    image: postgres:16-alpine
+    container_name: revenuein_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-revenuein}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_DB: ${POSTGRES_DB:-revenuein}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-revenuein} -d ${POSTGRES_DB:-revenuein}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - revenuein_net
+
+networks:
+  revenuein_net:
+    driver: bridge
+
+volumes:
+  postgres_data:
