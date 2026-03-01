@@ -25,7 +25,17 @@ router.post('/contact', mainController.post);
 
 // Show the login page
 router.get('/admin/login', (req, res) => {
-    if (req.session.localAdmin || req.isAuthenticated()) return res.redirect('/admin');
+    // Fully logged in as admin → go to dashboard
+    if (req.session.localAdmin || (req.isAuthenticated() && req.user && req.user.role === 'admin')) {
+        return res.redirect('/admin');
+    }
+    // Authenticated via Google but NOT admin → show access denied (prevents redirect loop)
+    if (req.isAuthenticated() && req.user && req.user.role !== 'admin') {
+        return res.render('admin/login', {
+            googleEnabled,
+            error: `Access denied: the account "${req.user.email}" is not authorised as admin.`
+        });
+    }
     const error = req.session.loginError || null;
     delete req.session.loginError;
     res.render('admin/login', { googleEnabled, error });
