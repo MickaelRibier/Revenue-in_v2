@@ -54,6 +54,35 @@
   }
 }
 
+/* LinkedIn badge: show iframe on ≥480px, show button on <480px */
+.li-badge-mobile {
+  display: none;
+}
+
+@media (max-width: 479px) {
+  .li-badge-desktop {
+    display: none;
+  }
+
+  .li-badge-mobile {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #0077B5;
+    color: #fff;
+    padding: 0.8rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: background 0.2s ease;
+  }
+
+  .li-badge-mobile:hover {
+    background: #005f92;
+  }
+}
+
 @media (max-width: 480px) {
   .hero-badge {
     display: none;
@@ -71,6 +100,11 @@
   .testimonial-card {
     padding: 2rem 1rem;
     margin: 0;
+  }
+
+  /* Contact form: reduce padding on very small screens */
+  .contact-form {
+    padding: 1.5rem 1rem;
   }
 }
 

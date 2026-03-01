@@ -647,6 +647,13 @@ p {
   margin-bottom: 1.5rem;
 }
 
+.contact-form {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 3rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
 .form-control {
   width: 100%;
   padding: 1rem 1.5rem;
