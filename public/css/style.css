@@ -126,11 +126,48 @@ p {
 
 .bg-darker {
   background-color: #050a17;
-  /* Even darker for contrast */
 }
 
 .bg-secondary {
   background-color: var(--color-secondary-dark);
+}
+
+.bg-brand-pink {
+  background-color: var(--color-brand-pink);
+}
+
+/* Text/card overrides inside pink sections */
+.bg-brand-pink h2,
+.bg-brand-pink h3,
+.bg-brand-pink h4,
+.bg-brand-pink p,
+.bg-brand-pink em,
+.bg-brand-pink strong {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.bg-brand-pink .text-accent {
+  color: #0A1128;
+  /* navy on pink for contrast */
+}
+
+.bg-brand-pink .about-highlight {
+  border-left-color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.bg-brand-pink .link-arrow {
+  color: #0A1128;
+}
+
+.bg-brand-pink .approach-card {
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 3px solid transparent;
+}
+
+.bg-brand-pink .approach-card:hover {
+  border-left-color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .grid-2 {
@@ -178,7 +215,7 @@ p {
 }
 
 .nav-brand span {
-  color: var(--color-accent);
+  color: var(--color-brand-pink);
 }
 
 .nav-links {
