@@ -213,9 +213,9 @@ p {
 
 .nav-links .nav-cta {
   padding: 0.6rem 1.5rem;
-  border: 1px solid var(--color-accent);
+  border: 1px solid var(--color-brand-pink);
   border-radius: 4px;
-  color: var(--color-accent);
+  color: var(--color-brand-pink);
 }
 
 .nav-links .nav-cta::after {
@@ -223,7 +223,7 @@ p {
 }
 
 .nav-links .nav-cta:hover {
-  background-color: rgba(212, 175, 55, 0.1);
+  background-color: rgba(242, 10, 94, 0.12);
 }
 
 /* =========================================================================
@@ -270,13 +270,13 @@ p {
 
 .hero-tagline {
   display: inline-block;
-  color: var(--color-accent);
+  color: var(--color-brand-pink);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 2px;
   margin-bottom: 1.5rem;
   font-size: 0.875rem;
-  border-left: 2px solid var(--color-accent);
+  border-left: 2px solid var(--color-brand-pink);
   padding-left: 1rem;
 }
 
@@ -497,6 +497,33 @@ p {
   font-style: italic;
   margin-bottom: 2rem;
   line-height: 1.8;
+  /* Clamp to 5 lines by default */
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.testimonial-text.expanded {
+  display: block;
+  overflow: visible;
+  -webkit-line-clamp: unset;
+}
+
+.read-more-btn {
+  background: none;
+  border: none;
+  color: var(--color-brand-pink);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  margin-bottom: 2rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .testimonial-author h4 {

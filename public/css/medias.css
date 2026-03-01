@@ -73,3 +73,35 @@
     margin: 0;
   }
 }
+
+@media (max-width: 640px) {
+
+  /* Slider: reduce side padding so arrows don't eat too much space */
+  .testimonials-slider {
+    padding: 0 2.5rem 3rem;
+  }
+
+  .slider-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+
+  .testimonial-card {
+    padding: 1.75rem 1.25rem;
+  }
+
+  .testimonial-text {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .quote-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-author h4 {
+    font-size: 1rem;
+  }
+}

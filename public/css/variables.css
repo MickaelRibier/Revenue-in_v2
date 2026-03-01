@@ -2,8 +2,12 @@
   /* Color Palette - Premium Modern Corporate */
   --color-primary-dark: #0A1128;
   --color-secondary-dark: #1C2541;
-  --color-accent: #D4AF37;       /* Premium Gold */
+  --color-accent: #D4AF37;
+  /* Premium Gold */
   --color-accent-hover: #C5A059;
+  --color-brand-pink: #f20a5e;
+  /* Brand Pink */
+  --color-brand-pink-hover: #d4084f;
   --color-text-light: #F8F9FA;
   --color-text-muted: #A0AAB2;
   --color-bg-light: #F4F6F8;

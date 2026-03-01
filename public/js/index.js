@@ -164,5 +164,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (slides.length > 1) resetAutoplay();
+
+    // "Read more / Show less" toggle for long testimonials
+    track.querySelectorAll('.testimonial-text').forEach(function (textEl) {
+      // Only show button if text is actually truncated
+      if (textEl.scrollHeight > textEl.clientHeight + 4) {
+        var btn = document.createElement('button');
+        btn.className = 'read-more-btn';
+        btn.textContent = 'Read more...';
+        textEl.parentNode.insertBefore(btn, textEl.nextSibling);
+
+        btn.addEventListener('click', function () {
+          var expanded = textEl.classList.toggle('expanded');
+          btn.textContent = expanded ? 'Show less' : 'Read more...';
+        });
+      }
+    });
   }
 });
