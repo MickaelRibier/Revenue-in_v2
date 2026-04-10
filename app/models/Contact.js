@@ -18,6 +18,10 @@ Contact.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    isArchived: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
   {
     sequelize,

@@ -5,10 +5,17 @@ const adminController = {
     // Render Main Dashboard (Messages & Overview)
     async dashboard(req, res) {
         try {
-            const messages = await Contact.findAll();
+            const isArchived = req.query.archived === 'true';
+            const messages = await Contact.findAll({
+                where: {
+                    isArchived: isArchived ? true : false
+                },
+                order: [['id', 'DESC']]
+            });
             res.render('admin/dashboard', {
                 user: req.user,
-                messages
+                messages,
+                isArchivedView: isArchived
             });
         } catch (error) {
             console.error('Error fetching admin dashboard:', error);
@@ -74,6 +81,37 @@ const adminController = {
             res.redirect('/admin/testimonials');
         } catch (error) {
             console.error('Error toggling testimonial:', error);
+            res.status(500).send('Server Error');
+        }
+    },
+
+    // Delete contact message
+    async deleteMessage(req, res) {
+        try {
+            const { id } = req.params;
+            const message = await Contact.findByPk(id);
+            if (message) {
+                await message.destroy();
+            }
+            res.redirect('back');
+        } catch (error) {
+            console.error('Error deleting message:', error);
+            res.status(500).send('Server Error');
+        }
+    },
+
+    // Toggle message archive state
+    async toggleArchiveMessage(req, res) {
+        try {
+            const { id } = req.params;
+            const message = await Contact.findByPk(id);
+            if (message) {
+                message.isArchived = !message.isArchived;
+                await message.save();
+            }
+            res.redirect('back');
+        } catch (error) {
+            console.error('Error archiving message:', error);
             res.status(500).send('Server Error');
         }
     }

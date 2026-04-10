@@ -94,6 +94,9 @@ router.get('/logout', (req, res, next) => {
 
 // ─── Admin Routes (Protected) ───
 router.get('/admin', adminAuth, adminController.dashboard);
+router.post('/admin/messages/:id/delete', adminAuth, adminController.deleteMessage);
+router.post('/admin/messages/:id/archive', adminAuth, adminController.toggleArchiveMessage);
+
 router.get('/admin/testimonials', adminAuth, adminController.testimonialsView);
 router.post('/admin/testimonials', adminAuth, adminController.createTestimonial);
 router.post('/admin/testimonials/:id/delete', adminAuth, adminController.deleteTestimonial);
