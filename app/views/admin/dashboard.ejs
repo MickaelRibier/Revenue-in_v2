@@ -15,21 +15,21 @@
 
 <body class="bg-gray-50 flex h-screen text-gray-800 overflow-hidden">
 
-    <!-- ── Sidebar Overlay (mobile) ── -->
+    <!-- ── Sidebar Overlay (mobile/tablet) ── -->
     <div id="sidebarOverlay"
-        class="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm hidden opacity-0 md:hidden"
+        class="fixed inset-0 z-30 bg-black/50 backdrop-blur-sm hidden opacity-0 lg:hidden"
         onclick="closeSidebar()"></div>
 
     <!-- ── Sidebar ── -->
     <aside id="sidebar"
-        class="fixed md:static inset-y-0 left-0 z-40 w-64 bg-slate-900 text-white flex flex-col shrink-0 -translate-x-full md:translate-x-0">
+        class="fixed lg:static inset-y-0 left-0 z-40 w-64 bg-slate-900 text-white flex flex-col shrink-0 -translate-x-full lg:translate-x-0">
         <div class="p-6 flex items-center justify-between">
             <div>
                 <h2 class="text-2xl font-bold text-yellow-500">Revenue<span class="text-white">In</span></h2>
                 <p class="text-xs text-gray-400 mt-1">Admin Portal</p>
             </div>
-            <!-- Close button (mobile only) -->
-            <button onclick="closeSidebar()" class="md:hidden text-gray-400 hover:text-white p-1">
+            <!-- Close button (mobile/tablet only) -->
+            <button onclick="closeSidebar()" class="lg:hidden text-gray-400 hover:text-white p-1">
                 <i class="fas fa-times text-lg"></i>
             </button>
         </div>
@@ -67,9 +67,9 @@
         <!-- Top Header -->
         <header class="bg-white border-b border-gray-200 px-4 sm:px-8 py-4 sm:py-5 flex items-center justify-between shrink-0">
             <div class="flex items-center gap-4">
-                <!-- Hamburger (mobile only) -->
+                <!-- Hamburger (mobile/tablet only) -->
                 <button onclick="openSidebar()"
-                    class="md:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors shrink-0"
+                    class="lg:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-600 transition-colors shrink-0"
                     aria-label="Open menu">
                     <i class="fas fa-bars text-lg"></i>
                 </button>
@@ -100,8 +100,8 @@
 
             <% if (messages && messages.length > 0) { %>
 
-                <!-- Card list (mobile) -->
-                <div class="md:hidden space-y-3">
+                <!-- Card list (mobile/tablet) -->
+                <div class="lg:hidden space-y-3">
                     <% messages.forEach(function(msg) { %>
                         <div class="msg-row bg-white rounded-xl shadow-sm border border-gray-200 p-4 cursor-pointer hover:border-yellow-300 hover:shadow-md transition-all relative"
                             data-name="<%- msg.name %>" data-email="<%- msg.email %>" data-message="<%- msg.message %>" data-id="<%- msg.id %>">
@@ -131,9 +131,9 @@
                     <% }); %>
                 </div>
 
-                <!-- Table (tablet and up) -->
-                <div class="hidden md:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
-                    <table class="w-full text-left border-collapse">
+                <!-- Table (desktop and up) -->
+                <div class="hidden lg:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[800px]">
                         <thead>
                             <tr class="bg-gray-50 border-b border-gray-200 text-sm text-gray-500">
                                 <th class="py-3 px-6 font-medium">Name</th>
