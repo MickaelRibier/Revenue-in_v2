@@ -132,14 +132,14 @@
                 </div>
 
                 <!-- Table (desktop and up) -->
-                <div class="hidden lg:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-x-auto">
-                    <table class="w-full text-left border-collapse min-w-[600px]">
+                <div class="hidden lg:block bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                    <table class="w-full text-left border-collapse table-fixed">
                         <thead>
                             <tr class="bg-gray-50 border-b border-gray-200 text-sm text-gray-500">
-                                <th class="py-3 px-6 font-medium">Name</th>
-                                <th class="py-3 px-6 font-medium">Email</th>
-                                <th class="py-3 px-6 font-medium">Preview</th>
-                                <th class="py-3 px-6 font-medium text-right">Actions</th>
+                                <th class="py-3 px-4 font-medium w-[20%]">Name</th>
+                                <th class="py-3 px-4 font-medium w-[30%]">Email</th>
+                                <th class="py-3 px-4 font-medium w-[35%]">Preview</th>
+                                <th class="py-3 px-4 font-medium text-right w-[15%] min-w-[120px]">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="text-sm">
@@ -147,13 +147,12 @@
                                 <tr class="msg-row border-b border-gray-100 hover:bg-yellow-50/50 cursor-pointer transition-colors"
                                     data-name="<%- msg.name %>" data-email="<%- msg.email %>"
                                     data-message="<%- msg.message %>" data-id="<%- msg.id %>">
-                                    <td class="py-4 px-6 font-medium text-gray-800"><%- msg.name %></td>
-                                    <td class="py-4 px-6 text-blue-600"><%- msg.email %></td>
-                                    <td class="py-4 px-6 text-gray-500 max-w-xs truncate">
-                                        <%- msg.message.substring(0, 80) %>
-                                        <%= msg.message.length > 80 ? '…' : '' %>
+                                    <td class="py-4 px-4 font-medium text-gray-800 truncate"><%- msg.name %></td>
+                                    <td class="py-4 px-4 text-blue-600 truncate"><%- msg.email %></td>
+                                    <td class="py-4 px-4 text-gray-500 truncate">
+                                        <%- msg.message.replace(/\n/g, ' ') %>
                                     </td>
-                                    <td class="py-4 px-6 text-right">
+                                    <td class="py-4 px-4 text-right">
                                         <div class="flex items-center justify-end gap-2">
                                             <form action="/admin/messages/<%= msg.id %>/archive" method="POST" onclick="event.stopPropagation()">
                                                 <button type="submit" class="text-gray-400 hover:text-blue-600 transition p-1.5" title="<%= locals.isArchivedView ? 'Unarchive' : 'Archive' %>">
